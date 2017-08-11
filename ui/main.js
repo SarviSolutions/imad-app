@@ -1,6 +1,6 @@
 //counter code
 var button = document.getElementById('counter');
-var counter = 999;
+var counter = 0;
 button.onclick = function ()
 {
   //Create a request object
@@ -10,7 +10,7 @@ button.onclick = function ()
   request.onreadtstatechange = function (){
       if (request.readtState === XMLHttpRequest.DONE){
           //Take some action
-          if (request.status === 2000){
+          if (request.status === 200){
             var counter = request.responseById('count');
             var span = document.getElementById('count');
             span.innerHTML = counter.toString();
