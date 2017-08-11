@@ -3,14 +3,22 @@ var button = document.getElementById('counter');
 var counter = 999;
 button.onclick = function ()
 {
-  //Make a request to the counter endpoint
+  //Create a request object
+  var request = new XMLHttpRequest();
   
   //Capture the response and store it in a variable
-  
-  //Render the variable in the correct span
-  counter = counter + 1;
-  var span = document.getElementById('count');
-  span.innerHTML = counter.toString();
-  
-    
+  request.onreadtstatechange = function (){
+      if (request.readtState === XMLHttpRequest.DONE){
+          //Take some action
+          if (request.status === 2000){
+            var counter = request.responseById('count');
+            var span = document.getElementById('count');
+            span.innerHTML = counter.toString();
+          }
+      }
+      //Not done yet
+  };
+  //Make the request
+  request.open('GET', 'http://sarvisolutions41.imad.hasura-app.io/counter', true);
+  request.send(null);
 };
